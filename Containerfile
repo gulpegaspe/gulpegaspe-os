@@ -1,8 +1,8 @@
 FROM quay.io/fedora/fedora-bootc:latest
 LABEL maintainer="Ivan Gasperoni"
 
-COPY ./scripts/first-boot-setup.sh /usr/local/bin/first-boot-setup.sh
-COPY ./systemd/first-boot-setup.service /usr/lib/systemd/system/first-boot-setup.service
+COPY ./scripts/fix-bootc-system.sh /usr/local/bin/fix-bootc-system.sh
+COPY ./systemd/fix-bootc-system.service /usr/lib/systemd/system/fix-bootc-system.service
 
 RUN rmdir /opt && ln -s -T /var/opt /opt \
     dnf -y install dnf5-plugins && \
@@ -37,8 +37,8 @@ RUN rmdir /opt && ln -s -T /var/opt /opt \
         fprintd-pam \
         langpacks-it && \
     authselect enable-feature with-fingerprint && \
-    chmod +x /usr/local/bin/first-boot-setup.sh && \
-    systemctl enable first-boot-setup.service && \
+    chmod +x /usr/local/bin/fix-bootc-system.sh && \
+    systemctl enable fix-bootc-system.service && \
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && \
     dnf -y autoremove && \
     dnf clean all && \
