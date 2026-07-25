@@ -1,6 +1,6 @@
 [Unit]
 Description=Configure initial startup
-ConditionFirstBoot=true
+#ConditionFirstBoot=true
 After=local-fs.target
 
 [Service]
