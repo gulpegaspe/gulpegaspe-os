@@ -5,7 +5,7 @@ After=local-fs.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/bin/first-boot-setup.sh
+ExecStart=/usr/local/bin/fix-bootc-system.sh
 RemainAfterExit=true
 
 [Install]
