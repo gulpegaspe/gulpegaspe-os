@@ -5,7 +5,7 @@ COPY ./scripts/fix-bootc-system.sh /usr/local/bin/fix-bootc-system.sh
 COPY ./systemd/fix-bootc-system.service /usr/lib/systemd/system/fix-bootc-system.service
 
 #rmdir /opt && ln -s -T /var/opt /opt && \
-RUN rmdir /opt && ln -s -T /var/opt /opt && \
+RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
     dnf -y install dnf5-plugins && \
     dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo && \
     dnf -y install \
