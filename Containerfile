@@ -1,10 +1,9 @@
 FROM quay.io/fedora/fedora-bootc:latest
 LABEL maintainer="Ivan Gasperoni"
 
-COPY ./scripts/fix-bootc-system.sh /usr/local/bin/fix-bootc-system.sh
-COPY ./systemd/fix-bootc-system.service /usr/lib/systemd/system/fix-bootc-system.service
+#COPY ./scripts/fix-bootc-system.sh /usr/local/bin/fix-bootc-system.sh
+#COPY ./systemd/fix-bootc-system.service /usr/lib/systemd/system/fix-bootc-system.service
 
-#rmdir /opt && ln -s -T /var/opt /opt && \
 RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
     dnf -y install dnf5-plugins && \
     dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo && \
@@ -38,14 +37,14 @@ RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
         fprintd-pam \
         langpacks-it && \
     authselect enable-feature with-fingerprint && \
-    chmod +x /usr/local/bin/fix-bootc-system.sh && \
-    systemctl enable fix-bootc-system.service && \
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && \
     dnf -y autoremove && \
     dnf clean all && \
     find /var/log -type f ! -empty -delete && \
     bootc container lint
 
+    #chmod +x /usr/local/bin/fix-bootc-system.sh && \
+    #systemctl enable fix-bootc-system.service && \
     #dnf -y install spice-vdagent && \
     #flatpak update -y && \
     #flatpak install -y io.github.flattool.Warehouse && \
