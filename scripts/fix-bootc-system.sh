@@ -1,3 +1,5 @@
 #!/bin/bash
 
-sed -i '/ \/ /s/^/#/' /etc/fstab
+if ! grep -q "^#.* / /" /etc/fstab; then
+  sed -i '/ \/ /s/^/#/' /etc/fstab
+fi
