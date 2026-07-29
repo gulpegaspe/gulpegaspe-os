@@ -35,8 +35,8 @@ RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
         flatpak \
         borgbackup \
         fprintd-pam \
-        langpacks-it && \
-        NetworkManager-wifi \
+        langpacks-it \
+        NetworkManager-wifi && \
     authselect enable-feature with-fingerprint && \
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && \
     dnf -y autoremove && \
