@@ -24,6 +24,7 @@ RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
         plasma-firewall \
         krdp \
         keepsecret \
+        ark \
         langpacks-en \
         brave-browser \
         distrobox \
