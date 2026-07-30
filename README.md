@@ -28,3 +28,8 @@ sed -i '/ \/ /s/^/#/' /etc/fstab
 ```bash
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ```
+
+## Bootc switch
+```bash
+bootc switch ghcr.io/gulpegaspe/gulpegaspe-os
+```
