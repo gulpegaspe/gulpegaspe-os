@@ -29,6 +29,7 @@ RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
         pam-kwallet \
         kscreen \
         kde-connect \
+        plasma-systemmonitor \
         langpacks-en \
         brave-browser \
         distrobox \
