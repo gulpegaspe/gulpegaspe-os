@@ -16,11 +16,11 @@ jobs:
       packages: write  # Permission required to write to GitHub Packages
     
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout del repository
+        uses: actions/checkout@v7
 
-      - name: Set up output directory
-        run: mkdir -p output
+      #- name: Set up output directory
+      #  run: mkdir -p output
 
       - name: Run bootc-image-builder via Podman
         run: |
@@ -28,17 +28,17 @@ jobs:
             --pull=newer \
             -v ./:/output \
             -v /var/lib/containers/storage:/var/lib/containers/storage \
-            -v ./config.toml:/config.toml:ro \
+            -v ./iso-builder/config.toml:/config.toml:ro \
             quay.io/centos-bootc/bootc-image-builder:latest \
             --type anaconda-iso \
             --rootfs btrfs \
             ghcr.io/gulpegaspe/gulpegaspe-os
 
-      - name: Fix output permissions
-        run: sudo chown -R $USER:$USER output/
+      #- name: Fix output permissions
+      #  run: sudo chown -R $USER:$USER output/
 
       - name: Upload ISO Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: gulpegaspe-os-iso
           path: output/**/*.iso
