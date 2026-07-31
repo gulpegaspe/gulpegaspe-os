@@ -25,6 +25,8 @@ RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
         krdp \
         keepsecret \
         ark \
+        kde-gtk-config \
+        pam-kwallet \
         langpacks-en \
         brave-browser \
         distrobox \
@@ -36,7 +38,6 @@ RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
         flatpak \
         borgbackup \
         fprintd-pam \
-        pam-kwallet \
         NetworkManager-wifi \
         langpacks-it && \
     authselect enable-feature with-fingerprint && \
