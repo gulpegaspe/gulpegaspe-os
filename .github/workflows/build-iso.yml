@@ -19,8 +19,8 @@ jobs:
       - name: Checkout del repository
         uses: actions/checkout@v7
 
-      #- name: Set up output directory
-      #  run: mkdir -p output
+      - name: Set up output directory
+        run: mkdir -p output
 
       - name: Pull target OS image
         run: sudo podman pull ghcr.io/gulpegaspe/gulpegaspe-os:latest
