@@ -47,7 +47,7 @@ jobs:
       #    path: output/**/*.iso
 
       - name: Publish release with ISO
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: output/**/*.iso
           # Se vuoi che crei una release "automatica" ogni volta (es. sovrascrivendo una tag "latest"):
