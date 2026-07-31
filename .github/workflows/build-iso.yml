@@ -1,4 +1,4 @@
-name: Build Bootc ISO
+name: Build -> gulpegaspe-os ISO
 
 on:
   #push:
