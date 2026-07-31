@@ -22,6 +22,9 @@ jobs:
       #- name: Set up output directory
       #  run: mkdir -p output
 
+      - name: Pull target OS image
+        run: sudo podman pull ghcr.io/gulpegaspe/gulpegaspe-os:latest
+
       - name: Run bootc-image-builder via Podman
         run: |
           sudo podman run --rm -it --privileged \
