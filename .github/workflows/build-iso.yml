@@ -1,18 +1,40 @@
-- name: Build -> gulpegaspe-os ISO
-  id: build-iso
-  uses: osbuild/bootc-image-builder-action@vX.Y.Z  # Sostituisci con l'ultima versione
-  with:
-    # Il file di configurazione TOML per il builder (come il tuo config.toml) [citation:3][citation:7]
-    config-file: ./config.toml
-    # L'immagine container da usare [citation:8]
-    image: ghcr.io/gulpegaspe/gulpegaspe-os
-    # Il tipo di output che vuoi: anaconda-iso [citation:4][citation:8]
-    types: |
-      anaconda-iso
-    # Il filesystem root per il disco. Fondamentale per Fedora! [citation:1][citation:6]
-    rootfs: btrfs
-- name: Upload Artifact
-  uses: actions/upload-artifact@v4
-  with:
-    name: iso
-    path: ${{ steps.build-iso.outputs.output-directory }}
+name: Build Bootc ISO
+
+on:
+  #push:
+  #  branches: [ "main" ]
+  #pull_request:
+  #  branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-iso:
+    runs-on: self-hosted # Oppure 'ubuntu-latest' se configuri i permessi di root
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up output directory
+        run: mkdir -p output
+
+      - name: Run bootc-image-builder via Podman
+        run: |
+          sudo podman run --rm -it --privileged \
+            --pull=newer \
+            -v ./:/output \
+            -v /var/lib/containers/storage:/var/lib/containers/storage \
+            -v ./config.toml:/config.toml:ro \
+            quay.io/centos-bootc/bootc-image-builder:latest \
+            --type anaconda-iso \
+            --rootfs btrfs \
+            ghcr.io/gulpegaspe/gulpegaspe-os
+
+      - name: Fix output permissions
+        run: sudo chown -R $USER:$USER output/
+
+      - name: Upload ISO Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: gulpegaspe-os-iso
+          path: output/**/*.iso
