@@ -9,11 +9,11 @@ on:
 
 jobs:
   build-iso:
-    #runs-on: self-hosted # Oppure 'ubuntu-latest' se configuri i permessi di root
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write  # Permission required to write to GitHub Packages
+    runs-on: self-hosted # Oppure 'ubuntu-latest' se configuri i permessi di root
+    #runs-on: ubuntu-latest
+    #permissions:
+    #  contents: read
+    #  packages: write  # Permission required to write to GitHub Packages
     
     steps:
       - name: Checkout del repository
@@ -39,9 +39,22 @@ jobs:
 
       #- name: Fix output permissions
       #  run: sudo chown -R $USER:$USER output/
+      
+      #- name: Upload ISO Artifact
+      #  uses: actions/upload-artifact@v7
+      #  with:
+      #    name: gulpegaspe-os-iso
+      #    path: output/**/*.iso
 
-      - name: Upload ISO Artifact
-        uses: actions/upload-artifact@v7
+      - name: Publish release with ISO
+        uses: softprops/action-gh-release@v2
         with:
-          name: gulpegaspe-os-iso
-          path: output/**/*.iso
+          files: output/**/*.iso
+          # Se vuoi che crei una release "automatica" ogni volta (es. sovrascrivendo una tag "latest"):
+          tag_name: latest
+          name: "Gulpegaspe OS - Latest Build"
+          body: "Automatic build of Gulpegaspe OS ISO generated via bootc-image-builder."
+          draft: true
+          #prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
