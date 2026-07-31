@@ -1,4 +1,4 @@
-- name: Build ISO
+- name: Build -> gulpegaspe-os ISO
   id: build-iso
   uses: osbuild/bootc-image-builder-action@vX.Y.Z  # Sostituisci con l'ultima versione
   with:
