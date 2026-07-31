@@ -27,6 +27,8 @@ RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
         ark \
         kde-gtk-config \
         pam-kwallet \
+        kscreen \
+        kde-connect \
         langpacks-en \
         brave-browser \
         distrobox \
