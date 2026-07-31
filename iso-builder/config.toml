@@ -14,11 +14,11 @@ timezone --utc
 #keyboard --xlayouts
 
 # Tell Anaconda that this is a container-native bootc installation
-bootc --target-imgref ghcr.io/gulpegaspe/gulpegaspe-os
+#bootc --target-imgref ghcr.io/gulpegaspe/gulpegaspe-os
 #ostreecontainer--url ghcr.io/gulpegaspe/gulpegaspe-os:latest
 
 %post --nochroot
-#sed -i '/ \\/ /s/^/#/' /sysroot/etc/fstab
+
 %end
 
 """
