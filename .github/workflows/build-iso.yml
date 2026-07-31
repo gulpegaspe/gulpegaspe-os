@@ -9,7 +9,11 @@ on:
 
 jobs:
   build-iso:
-    runs-on: self-hosted # Oppure 'ubuntu-latest' se configuri i permessi di root
+    #runs-on: self-hosted # Oppure 'ubuntu-latest' se configuri i permessi di root
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write  # Permission required to write to GitHub Packages
     
     steps:
       - name: Checkout repository
