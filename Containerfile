@@ -46,7 +46,7 @@ RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
     find /var/log -type f ! -empty -delete && \
     bootc container lint
 
-RUN mkdir -p /usr/local/sbin
+#RUN mkdir -p /usr/local/sbin
 
     #chmod +x /usr/local/bin/fix-bootc-system.sh && \
     #systemctl enable fix-bootc-system.service && \
