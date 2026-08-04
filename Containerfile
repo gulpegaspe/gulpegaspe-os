@@ -44,6 +44,7 @@ RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
         NetworkManager-wifi \
         splix \
         rclone \
+        vlc \
         langpacks-it && \
     authselect enable-feature with-fingerprint && \
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && \
