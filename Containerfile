@@ -46,6 +46,7 @@ RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
         rclone \
         vlc \
         pciutils \
+        openh264 \
         langpacks-it && \
     authselect enable-feature with-fingerprint && \
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && \
