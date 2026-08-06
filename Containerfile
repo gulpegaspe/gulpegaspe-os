@@ -3,6 +3,8 @@ LABEL maintainer="Ivan Gasperoni"
 
 #COPY ./scripts/fix-bootc-system.sh /usr/local/bin/fix-bootc-system.sh
 #COPY ./systemd/fix-bootc-system.service /usr/lib/systemd/system/fix-bootc-system.service
+COPY ./scripts/set-wifi-powersave.sh /usr/local/bin/set-wifi-powersave.sh
+COPY ./systemd/set-wifi-powersave.service /usr/lib/systemd/system/set-wifi-powersave.service
 
 RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
     dnf -y install dnf5-plugins && \
@@ -54,9 +56,9 @@ RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
     dnf -y autoremove && \
     dnf clean all && \
     find /var/log -type f ! -empty -delete && \
+    chmod +x /usr/local/bin/set-wifi-powersave.sh && \
+    systemctl enable set-wifi-powersave.service && \
     bootc container lint
-
-#RUN mkdir -p /usr/local/sbin
 
     #chmod +x /usr/local/bin/fix-bootc-system.sh && \
     #systemctl enable fix-bootc-system.service && \
