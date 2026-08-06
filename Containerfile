@@ -1,10 +1,8 @@
 FROM quay.io/fedora/fedora-bootc:latest
 LABEL maintainer="Ivan Gasperoni"
 
-#COPY ./scripts/fix-bootc-system.sh /usr/local/bin/fix-bootc-system.sh
-#COPY ./systemd/fix-bootc-system.service /usr/lib/systemd/system/fix-bootc-system.service
 COPY ./scripts/set-wifi-powersave.sh /usr/local/bin/set-wifi-powersave.sh
-COPY ./systemd/set-wifi-powersave.service /usr/lib/systemd/system/set-wifi-powersave.service
+COPY ./systemd/set-wifi-powersave-off.service /usr/lib/systemd/system/set-wifi-powersave-off.service
 
 RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
     dnf -y install dnf5-plugins && \
@@ -57,7 +55,7 @@ RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
     dnf clean all && \
     find /var/log -type f ! -empty -delete && \
     chmod +x /usr/local/bin/set-wifi-powersave.sh && \
-    systemctl enable set-wifi-powersave.service && \
+    systemctl enable set-wifi-powersave-off.service && \
     bootc container lint
 
     #chmod +x /usr/local/bin/fix-bootc-system.sh && \
