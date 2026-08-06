@@ -1,0 +1,15 @@
+[Unit]
+Description=Disable Wi-Fi Power Saving on Startup
+After=network.target
+Description=Configure Wi-Fi power saving states on startup
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/set-wifi-powersave.sh off
+RemainAfterExit=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/sys/class/net
+
+[Install]
+WantedBy=multi-user.target
