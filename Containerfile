@@ -31,6 +31,7 @@ RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
         kde-connect \
         plasma-systemmonitor \
         bluedevil \
+        kinfocenter \
         langpacks-en \
         brave-browser \
         distrobox \
