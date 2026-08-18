@@ -7,6 +7,8 @@ COPY ./systemd/set-wifi-powersave-off.service /usr/lib/systemd/system/set-wifi-p
 RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
     dnf -y install dnf5-plugins && \
     dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo && \
+    dnf 'dnf-command(copr)' enable bieszczaders/kernel-cachyos -y && \
+    dnf swap -y kernel kernel-cachyos && \
     dnf -y install \
         plasma-workspace \
         plasma-login-manager \
