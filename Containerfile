@@ -8,7 +8,8 @@ RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
     dnf -y install dnf5-plugins && \
     dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo && \
     dnf copr enable -y bieszczaders/kernel-cachyos && \
-    dnf swap -y kernel kernel-cachyos && \
+    dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && \
+    (dnf install -y kernel-cachyos || true) && \
     dnf -y install \
         plasma-workspace \
         plasma-login-manager \
