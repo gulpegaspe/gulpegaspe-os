@@ -9,7 +9,7 @@ RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
     dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo && \
     dnf copr enable -y bieszczaders/kernel-cachyos && \
     dnf remove -y kernel kernel-core kernel-modules kernel-modules-core kernel-modules-extra && \
-    dnf install -y kernel-cachyos && \
+    (dnf install -y kernel-cachyos || true) && \
     dnf -y install \
         plasma-workspace \
         plasma-login-manager \
@@ -61,6 +61,9 @@ RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
     find /var/log -type f ! -empty -delete && \
     chmod +x /usr/local/bin/set-wifi-powersave.sh && \
     systemctl enable set-wifi-powersave-off.service && \
+    KVER=$(ls /lib/modules/) && \
+    depmod -a $KVER && \
+    dracut --hostonly --kver $KVER -f /boot/initramfs-$KVER.img && \
     bootc container lint
 
     #chmod +x /usr/local/bin/fix-bootc-system.sh && \
