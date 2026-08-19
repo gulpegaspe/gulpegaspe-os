@@ -61,6 +61,9 @@ RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
     find /var/log -type f ! -empty -delete && \
     chmod +x /usr/local/bin/set-wifi-powersave.sh && \
     systemctl enable set-wifi-powersave-off.service && \
+    KVER=$(ls /lib/modules/) && \
+    depmod -a $KVER && \
+    dracut --no-hostonly --kver $KVER --reproducible -f /boot/initramfs-$KVER.img && \
     bootc container lint
 
     #chmod +x /usr/local/bin/fix-bootc-system.sh && \
