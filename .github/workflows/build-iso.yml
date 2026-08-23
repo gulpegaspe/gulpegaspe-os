@@ -12,7 +12,7 @@ jobs:
     #runs-on: self-hosted # Oppure 'ubuntu-latest' se configuri i permessi di root
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       packages: write  # Permission required to write to GitHub Packages
     
     steps:
