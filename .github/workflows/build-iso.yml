@@ -53,7 +53,7 @@ jobs:
           # Se vuoi che crei una release "automatica" ogni volta (es. sovrascrivendo una tag "latest"):
           tag_name: latest
           name: "Gulpegaspe OS - Latest Build"
-          body: "Automatic build of Gulpegaspe OS ISO generated via bootc-image-builder."
+          body: "Automatic build of Gulpegaspe OS ISO generated via bootc-image-builder"
           draft: true
           #prerelease: false
         env:
