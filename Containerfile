@@ -50,6 +50,8 @@ RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
         pciutils \
         openh264 \
         filezilla \
+        subversion \
+        cryfs \
         langpacks-it && \
     authselect enable-feature with-fingerprint && \
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && \
