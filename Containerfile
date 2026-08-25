@@ -47,7 +47,6 @@ RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
         NetworkManager-wifi \
         splix \
         rclone \
-        vlc \
         pciutils \
         openh264 \
         filezilla \
