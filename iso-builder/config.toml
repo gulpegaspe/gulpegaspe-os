@@ -1,21 +1,18 @@
 # config.toml
 
+[customizations.installer.modules]
+enable = ["org.fedoraproject.Anaconda.Modules.Localization"]
+
 [customizations.installer.kickstart]
 contents = """
 
 # Use the graphical installer interactive
 graphical
 
-#firstboot --enable --reconfig
-
 network --hostname=gulpegaspe-os
 timezone --utc
 #lang
 #keyboard --xlayouts
-
-# Tell Anaconda that this is a container-native bootc installation
-#bootc --target-imgref ghcr.io/gulpegaspe/gulpegaspe-os
-#ostreecontainer--url ghcr.io/gulpegaspe/gulpegaspe-os:latest
 
 %post --nochroot
 
