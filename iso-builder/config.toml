@@ -6,16 +6,6 @@ enable = ["org.fedoraproject.Anaconda.Modules.Localization"]
 [customizations.installer.kickstart]
 contents = """
 
-# Use the graphical installer interactive
-graphical
 
-network --hostname=gulpegaspe-os
-timezone --utc
-#lang
-#keyboard --xlayouts
-
-%post --nochroot
-
-%end
 
 """

@@ -1,0 +1,10 @@
+FROM quay.io/fedora/fedora-bootc:latest
+RUN dnf install -y \
+     grub2-efi-x64-cdboot python3-mako anaconda && dnf clean all
+
+# Necessario su Fedora 43+ per mettere i file EFI nel posto giusto
+RUN mkdir -p /boot/efi && cp -ra /usr/lib/efi/*/*/EFI /boot/efi
+# lorax vuole creare un symlink in /mnt che punta a /var/mnt
+#RUN mkdir /var/mnt
+
+sudo podman build -t gulpegaspe-os-installer .
