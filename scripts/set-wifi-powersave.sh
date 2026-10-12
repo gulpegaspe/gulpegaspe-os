@@ -37,7 +37,7 @@ else
   interfaces=$(ls /sys/class/net | grep -E '^(wlan|wlp|wlo|wlx)')
   if [ -z "$interfaces" ]; then
     echo "No Wi-Fi interfaces found on this system."
-    exit 1
+    exit 0
   fi
 fi
 
