@@ -1,8 +1,9 @@
 FROM quay.io/fedora/fedora-bootc:latest
 LABEL maintainer="Ivan Gasperoni"
 
-COPY ./scripts/set-wifi-powersave.sh /usr/local/bin/set-wifi-powersave.sh
-COPY ./systemd/set-wifi-powersave-off.service /usr/lib/systemd/system/set-wifi-powersave-off.service
+#COPY ./scripts/set-wifi-powersave.sh /usr/local/bin/set-wifi-powersave.sh
+#COPY ./systemd/set-wifi-powersave-off.service /usr/lib/systemd/system/set-wifi-powersave-off.service
+COPY ./files/wifi-powersave-off.conf /usr/lib/NetworkManager/conf.d/wifi-powersave-off.conf
 
 # RUN rmdir /opt && mkdir /var/opt && ln -s -T /var/opt /opt && \
 RUN dnf -y install dnf5-plugins && \
