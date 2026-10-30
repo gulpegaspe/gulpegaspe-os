@@ -59,10 +59,10 @@ RUN dnf -y install dnf5-plugins && \
     dnf -y autoremove && \
     dnf clean all && \
     find /var/log -type f ! -empty -delete && \
-    chmod +x /usr/local/bin/set-wifi-powersave.sh && \
-    systemctl enable set-wifi-powersave-off.service && \
     bootc container lint
 
+    #chmod +x /usr/local/bin/set-wifi-powersave.sh && \
+    #systemctl enable set-wifi-powersave-off.service && \
     #chmod +x /usr/local/bin/fix-bootc-system.sh && \
     #systemctl enable fix-bootc-system.service && \
     #dnf -y install spice-vdagent && \
