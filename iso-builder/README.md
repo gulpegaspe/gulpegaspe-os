@@ -1,5 +1,5 @@
-# sudo podman pull ghcr.io/gulpegaspe/gulpegaspe-os:latest
-# sudo podman build -t ghcr.io/gulpegaspe/gulpegaspe-os --disable-compression=false  .
+#sudo podman pull ghcr.io/gulpegaspe/gulpegaspe-os:latest
+#sudo podman build -t ghcr.io/gulpegaspe/gulpegaspe-os --disable-compression=false  .
 
 sudo podman build -t gulpegaspe-os-installer .
 
