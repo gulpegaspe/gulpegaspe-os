@@ -17,7 +17,7 @@ podman run --rm -it --privileged --pull=newer \
     --output-dir /output \
     --bootc-ref localhost/gulpegaspe-os-installer \
     --bootc-default-fs btrfs \
-    bootc-generic-iso
+    generic-iso
 
 chown -R "${SUDO_UID:-0}:${SUDO_GID:-0}" output
 find output -name '*.iso' -exec ls -lh {} \;
