@@ -20,13 +20,7 @@ jobs:
     steps:
       - name: Checkout del repository
         uses: actions/checkout@v7
-        
-      - name: Login to ghcr.io
-        env:
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ACTOR: ${{ github.actor }}
-        run: echo "$TOKEN" | podman login "$REGISTRY" -u "$ACTOR" --password-stdin
- 
+
       - name: Calc image name and tag
         id: meta
         run: |
@@ -53,8 +47,16 @@ jobs:
             -t "${IMAGE}:${SHA}" \
             -t "${IMAGE}:${DATE}" \
             .
-            
+
+       - name: Login to ghcr.io
+        if: github.event_name != 'pull_request'
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTOR: ${{ github.actor }}
+        run: echo "$TOKEN" | podman login "$REGISTRY" -u "$ACTOR" --password-stdin
+        
       - name: Push image to ghcr.io
+        if: github.event_name != 'pull_request'
         env:
           IMAGE: ${{ steps.meta.outputs.image }}
           SHA: ${{ steps.meta.outputs.sha }}
