@@ -47,8 +47,8 @@ jobs:
             -t "${IMAGE}:${SHA}" \
             -t "${IMAGE}:${DATE}" \
             .
-
-       - name: Login to ghcr.io
+            
+      - name: Login to ghcr.io
         if: github.event_name != 'pull_request'
         env:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
