@@ -7,11 +7,12 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}  # gulpegaspe/gulpegaspe-os
+  #IMAGE_NAME: ${{ github.repository }}  # gulpegaspe/gulpegaspe-os
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     permissions:
       contents: read
       packages: write  # Permission required to write to GitHub Packages
@@ -19,7 +20,46 @@ jobs:
     steps:
       - name: Checkout del repository
         uses: actions/checkout@v7
-      - name: run podman build
-        run: podman build -t ${{ env.IMAGE_NAME }} --disable-compression=false .
-      - name: push image to ghcr.io
-        run: podman push --creds=${{ github.actor }}:${{ secrets.GITHUB_TOKEN }} ${{ env.IMAGE_NAME }} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+        
+      - name: Login to ghcr.io
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTOR: ${{ github.actor }}
+        run: echo "$TOKEN" | podman login "$REGISTRY" -u "$ACTOR" --password-stdin
+ 
+      - name: Calc image name and tag
+        id: meta
+        run: |
+          # ghcr.io required lowercase names
+          echo "image=${REGISTRY}/${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+          echo "sha=${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+          echo "date=$(date -u +%Y%m%d)" >> "$GITHUB_OUTPUT"
+          echo "created=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_OUTPUT"
+          
+      - name: Image build
+        env:
+          IMAGE: ${{ steps.meta.outputs.image }}
+          SHA: ${{ steps.meta.outputs.sha }}
+          DATE: ${{ steps.meta.outputs.date }}
+          CREATED: ${{ steps.meta.outputs.created }}
+          SOURCE: ${{ github.server_url }}/${{ github.repository }}
+        run: |
+          podman build \
+            --pull=newer \
+            --label "org.opencontainers.image.source=${SOURCE}" \
+            --label "org.opencontainers.image.revision=${GITHUB_SHA}" \
+            --label "org.opencontainers.image.created=${CREATED}" \
+            -t "${IMAGE}:latest" \
+            -t "${IMAGE}:${SHA}" \
+            -t "${IMAGE}:${DATE}" \
+            .
+            
+      - name: Push image to ghcr.io
+        env:
+          IMAGE: ${{ steps.meta.outputs.image }}
+          SHA: ${{ steps.meta.outputs.sha }}
+          DATE: ${{ steps.meta.outputs.date }}
+        run: |
+          for tag in latest "$SHA" "$DATE"; do
+            podman push "${IMAGE}:${tag}"
+          done
