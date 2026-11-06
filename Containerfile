@@ -56,6 +56,7 @@ RUN dnf -y install dnf5-plugins && \
         qemu-guest-agent \
         spice-vdagent \
         systemd-oomd-defaults \
+        zram-generator-defaults \
         langpacks-it && \
     authselect enable-feature with-fingerprint && \
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && \
