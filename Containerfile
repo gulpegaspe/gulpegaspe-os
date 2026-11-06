@@ -54,6 +54,7 @@ RUN dnf -y install dnf5-plugins && \
         subversion \
         cryfs \
         qemu-guest-agent \
+        spice-vdagent \
         langpacks-it && \
     authselect enable-feature with-fingerprint && \
     flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && \
