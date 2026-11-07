@@ -53,6 +53,7 @@ RUN dnf -y install dnf5-plugins && \
         filezilla \
         subversion \
         cryfs \
+        glibc-all-langpacks \
         qemu-guest-agent \
         spice-vdagent \
         systemd-oomd-defaults \
