@@ -17,7 +17,8 @@ RUN dnf install -qy \
 # these tools should be installed there
 RUN dnf install -qy \
     xorrisofs \
-    squashfs-tools
+    squashfs-tools \
+    implantisomd5
 
 RUN dnf clean all
 
@@ -33,7 +34,6 @@ COPY files/iso.yaml /usr/lib/image-builder/bootc/iso.yaml
 
 # some configuration for anaconda
 
-#COPY files/interactive-defaults.ks /usr/share/anaconda/interactive-defaults.ks
 ARG PAYLOAD_REF=ghcr.io/gulpegaspe/gulpegaspe-os:latest
 ARG PAYLOAD_SOURCE=registry
 RUN printf 'bootc --source-imgref %s:%s --target-imgref %s\n' \
