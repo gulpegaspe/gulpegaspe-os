@@ -1,18 +1,29 @@
 # gulpegaspe-os
 
-## Locale
+## Locale (system)
 ```
 localectl list-locales | grep it_
 sudo localectl set-locale LANG=it_IT.UTF-8
 ```
 
-## Keymap
+## Dictionaries in Plasma KDE
+```
+flatpak config
+sudo flatpak config --set languages "en;it"
+sudo flatpak update
+```
+```
+flatpak install  org.kde.Platform
+Select the version (Latest raccomandate)
+```
+
+## Keymap (system)
 ```
 localectl list-keymaps | grep it
 sudo localectl set-keymap it
 ```
 
-## Timezone
+## Timezone (system)
 ```bash
 timedatectl list-timezones | grep -i rome
 sudo timedatectl set-timezone Europe/Rome
@@ -29,7 +40,7 @@ sed -i '/ \/ /s/^/#/' /etc/fstab
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ```
 
-## Bootc switch
+## Bootc switch (obsolete)
 ```bash
 bootc switch ghcr.io/gulpegaspe/gulpegaspe-os
 ```
