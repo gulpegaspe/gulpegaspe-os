@@ -2,6 +2,6 @@ label: "Fedora-bootc-Installer"
 grub2:
   timeout: 5
   entries:
-    - name: "Install Fedora (bootc)"
-      linux: \${kernelpath} \${root} inst.graphical
-      initrd: \${initrdpath}
+    - name: "Install gulpegaspe-os (bootc)"
+      linux: ${kernelpath} ${root} inst.graphical
+      initrd: ${initrdpath}
