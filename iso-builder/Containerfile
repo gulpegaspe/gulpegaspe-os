@@ -38,7 +38,9 @@ ARG PAYLOAD_REF=ghcr.io/gulpegaspe/gulpegaspe-os:latest
 ARG PAYLOAD_SOURCE=registry
 RUN printf 'bootc --source-imgref %s:%s --target-imgref %s\n' \
     "$PAYLOAD_SOURCE" "$PAYLOAD_REF" "$PAYLOAD_REF" \
-    > /usr/share/anaconda/interactive-defaults.ks
+    > /usr/share/anaconda/interactive-defaults.ks && \
+    cat /tmp/kickstart-post.ks >> /usr/share/anaconda/interactive-defaults.ks && \
+    rm /tmp/kickstart-post.ks
 
 # ---
 
