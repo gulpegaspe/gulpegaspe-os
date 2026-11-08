@@ -51,7 +51,13 @@ cd iso-builder
 sudo bash build-iso.sh
 ```
 
-The resulting ISO is written to `iso-builder/output/`. The installer pulls the system image from `ghcr.io` during installation, so the target machine needs a working network connection.
+The resulting ISO is written to `iso-builder/output/`. By default, the installer pulls the system image from `ghcr.io` during installation, so the target machine needs a working network connection.
+
+To build a self-contained ISO that embeds the system image and installs without network access, run:
+
+    sudo bash build-iso.sh --offline
+
+The offline ISO is significantly larger. Installed systems still receive updates from `ghcr.io`.
 
 ### Switching an existing bootc system
 
