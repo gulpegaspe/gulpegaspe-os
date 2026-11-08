@@ -18,6 +18,10 @@ Secondo step é l'installazione vera e propria dei dizionari con estensioni .aff
 ```
 flatpak install org.kde.Platform
 ```
+Per ripristinare la situazione di default
+```
+sudo flatpak config --unset extra-languages
+```
 
 ## Keymap (system)
 ```
