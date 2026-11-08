@@ -12,8 +12,10 @@ flatpak config
 sudo flatpak config --set languages "en;it"
 sudo flatpak update
 ```
+
+Seleziona la versione (ultima raccomandata) per installare i dizionari con estensioni .aff e .dic che verranno letti dal motore di spelling di Plasma (System Settings -> Language & Time -> Spell Check)
 ```
-flatpak install  org.kde.Platform
+flatpak install org.kde.Platform
 Select the version (Latest raccomandate)
 ```
 
