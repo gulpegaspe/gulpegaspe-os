@@ -21,6 +21,7 @@ flatpak install org.kde.Platform
 Per ripristinare la situazione di default
 ```
 sudo flatpak config --unset extra-languages
+flatpak update
 ```
 
 ## Keymap (system)
