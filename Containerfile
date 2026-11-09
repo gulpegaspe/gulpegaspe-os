@@ -9,6 +9,7 @@ COPY ./files/wifi-powersave-off.conf /usr/lib/NetworkManager/conf.d/wifi-powersa
 RUN dnf -y install dnf5-plugins && \
     dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo && \
     dnf -y install \
+        --exclude=plasma-discover-packagekit \
         plasma-workspace \
         plasma-login-manager \
         plasma-nm \
