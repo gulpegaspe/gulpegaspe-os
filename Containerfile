@@ -35,6 +35,8 @@ RUN dnf -y install dnf5-plugins && \
         kinfocenter \
         haruna \
         kup-backup \
+        plasma-discover \
+        plasma-discover-flatpak \
         brave-browser \
         distrobox \
         docker \
