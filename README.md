@@ -141,7 +141,7 @@ sudo flatpak update
 
 ## Known issues
 
-### Duplicate root entry in `/etc/fstab`
+### Duplicate root entry in `/etc/fstab` (probably resolved)
 
 The root filesystem is already mounted by bootc, so the root entry in `/etc/fstab` causes a warning on the console at boot. Comment it out with:
 
