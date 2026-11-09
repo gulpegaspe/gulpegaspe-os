@@ -72,10 +72,4 @@ RUN dnf -y install dnf5-plugins && \
     #langpacks-it \
     #chmod +x /usr/local/bin/set-wifi-powersave.sh && \
     #systemctl enable set-wifi-powersave-off.service && \
-    #chmod +x /usr/local/bin/fix-bootc-system.sh && \
-    #systemctl enable fix-bootc-system.service && \
-    #dnf -y install spice-vdagent && \
-    #flatpak update -y && \
-    #flatpak install -y io.github.flattool.Warehouse && \
-    #flatpak uninstall --unused -y && \
     #rm -rf /var/cache/* /var/lib/dnf/* /var/tmp/* /tmp/* && \
