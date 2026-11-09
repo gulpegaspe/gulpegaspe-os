@@ -34,7 +34,7 @@ RUN dnf -y install dnf5-plugins && \
         bluedevil \
         kinfocenter \
         haruna \
-        langpacks-en \
+        kup-backup \
         brave-browser \
         distrobox \
         docker \
@@ -65,7 +65,8 @@ RUN dnf -y install dnf5-plugins && \
     find /var/log -type f ! -empty -delete && \
     bootc container lint
 
-    #langpacks-it && \
+    #langpacks-en \
+    #langpacks-it \
     #chmod +x /usr/local/bin/set-wifi-powersave.sh && \
     #systemctl enable set-wifi-powersave-off.service && \
     #chmod +x /usr/local/bin/fix-bootc-system.sh && \
