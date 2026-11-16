@@ -38,6 +38,7 @@ RUN dnf -y install dnf5-plugins && \
         kup-backup \
         plasma-discover \
         plasma-discover-flatpak \
+        plasma-oxygen \
         brave-browser \
         distrobox \
         docker \
