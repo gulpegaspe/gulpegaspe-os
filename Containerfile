@@ -54,7 +54,7 @@ RUN dnf -y install dnf5-plugins && \
         rclone \
         pciutils \
         openh264 \
-        filezilla \
+        hplip \
         subversion \
         cryfs \
         glibc-all-langpacks \
